@@ -39,14 +39,16 @@ def SolarPositionBoulbyPlot(Date,Ele,Azi,times):
 	Plot the elevation of the Sun through the day. Compare days through the year.
 	"""
 
-	plt.figure(figsize=(20,20))
+	plt.figure(figsize=(40,20))
 	for i in times:
 		plt.plot(Date[i],Ele[i],label=i)
-		plt.xticks(Date[i],rotation='vertical')
-		plt.xlabel('Date')
-		plt.ylabel('Elevation Above Horizon')
+		plt.xticks(Date[i],rotation='vertical',fontsize=20)
+		plt.xlabel('Date',fontsize=25)
+		plt.ylabel('Elevation Above Horizon',fontsize=25)
 		plt.gca().yaxis.set_major_formatter(FormatStrFormatter('%d$^o$'))
-		plt.legend()
+		plt.yticks(fontsize=20)
+		plt.legend(fontsize=15)
+		plt.title('Change in Solar Elevation at Set Time with Date at Boubly in 2020',fontsize=40)
 	plt.savefig(dirname + "/../Plots/SolarElevationbyDayBoulby.pdf")
 	plt.show()
 	return
@@ -66,7 +68,7 @@ def SolarPositionYearBoulbyPlot(Date,Ele,Azi,times):
 
 	Ele=np.array(Ele)
 
-	days=np.arange(0,74)
+	days=np.arange(0,len(Date[0]))
 
 	for h in days:
 		for j in times:
@@ -79,19 +81,20 @@ def SolarPositionYearBoulbyPlot(Date,Ele,Azi,times):
 
 	Date=np.array(Date)
 
-	for p in range(0,74):
+	for p in range(0,len(Date[0])):
 		custom_ticks = Date[0,p]	
 		custom_x_ticks.append(custom_ticks)
 
 	label_pos_x = np.arange(0,len(Ele_day_length),25)
 
-	plt.figure(figsize=(100,100))
+	plt.figure(figsize=(40,20))
 	plt.plot(Ele_day_length,Ele_day)
-	plt.ylabel('Elevation Above Horizon',fontsize=15)
-	plt.xlabel('Date',fontsize=15)
+	plt.ylabel('Elevation Above Horizon',fontsize=25)
+	plt.xlabel('Date',fontsize=25)
 	plt.gca().yaxis.set_major_formatter(FormatStrFormatter('%d$^o$'))
-	plt.xticks(label_pos_x,custom_x_ticks,rotation=90)
-	plt.title('Solar Elevation in 2020 at Boulby',fontsize=20)
+	plt.xticks(label_pos_x,custom_x_ticks,rotation=90,fontsize=20)
+	plt.yticks(fontsize=20)
+	plt.title('Solar Elevation in 2020 at Boulby',fontsize=40)
 	plt.savefig(dirname + "/../Plots/SolarElevation2020Boulby.pdf")
 	plt.show()
 	
